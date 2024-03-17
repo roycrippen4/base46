@@ -1,18 +1,15 @@
 local M = {}
 local g = vim.g
-local config = require "nvconfig"
+local config_path = vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua'
+local config = require(config_path)
 
 M.get_theme_tb = function(type)
   local default_path = "base46.themes." .. config.ui.theme
-  local user_path = "custom.themes." .. config.ui.theme
 
   local present1, default_theme = pcall(require, default_path)
-  local present2, user_theme = pcall(require, user_path)
 
   if present1 then
     return default_theme[type]
-  elseif present2 then
-    return user_theme[type]
   else
     error "No such theme!"
   end
@@ -143,33 +140,6 @@ end
 M.override_theme = function(default_theme, theme_name)
   local changed_themes = config.ui.changed_themes
   return M.merge_tb(default_theme, changed_themes.all or {}, changed_themes[theme_name] or {})
-end
-
-M.toggle_theme = function()
-  local themes = config.ui.theme_toggle
-
-  if config.ui.theme ~= themes[1] and config.ui.theme ~= themes[2] then
-    vim.notify "Set your current theme to one of those mentioned in the theme_toggle table (chadrc)"
-    return
-  end
-
-  g.icon_toggled = not g.icon_toggled
-  g.toggle_theme_icon = g.icon_toggled and "   " or "   "
-
-  config.ui.theme = (themes[1] == config.ui.theme and themes[2]) or themes[1]
-
-  local old_theme = dofile(vim.fn.stdpath "config" .. "/lua/custom/chadrc.lua").ui.theme
-  require("nvchad.utils").replace_word(old_theme, config.ui.theme)
-  M.load_all_highlights()
-end
-
-M.toggle_transparency = function()
-  config.ui.transparency = not config.ui.transparency
-  M.load_all_highlights()
-
-  local old_transparency_val = dofile(vim.fn.stdpath "config" .. "/lua/custom/chadrc.lua").ui.transparency
-  local new_transparency_val = "transparency = " .. tostring(config.ui.transparency)
-  require("nvchad.utils").replace_word("transparency = " .. tostring(old_transparency_val),new_transparency_val)
 end
 
 return M
