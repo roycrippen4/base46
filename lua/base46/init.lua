@@ -1,7 +1,6 @@
 local M = {}
 local g = vim.g
-local config_path = vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua'
-local config = require(config_path)
+local config = require(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui')
 
 M.get_theme_tb = function(type)
   local default_path = "base46.themes." .. config.ui.theme
