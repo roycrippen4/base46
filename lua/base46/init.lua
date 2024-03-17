@@ -1,5 +1,5 @@
 local M = {}
-local config = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua')
+local config = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui/init.lua')
 
 M.get_theme_tb = function(type)
   local default_path = 'base46.themes.' .. config.ui.theme

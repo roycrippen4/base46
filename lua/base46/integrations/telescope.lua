@@ -1,7 +1,6 @@
 local colors = require('base46').get_theme_tb('base_30')
 
-local telescope_style = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua').ui.telescope.style
--- local telescope_style = require("nvconfig").ui.telescope.style
+local telescope_style = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui/init.lua').ui.telescope.style
 
 local hlgroups = {
 

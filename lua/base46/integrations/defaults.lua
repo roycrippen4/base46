@@ -244,8 +244,7 @@ local defaults = {
 -- merge statusilne & hl_add tables!
 local merge_tb = require('base46').merge_tb
 
-local user_new_highlights = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua').ui.hl_add
--- local user_new_highlights = require("nvconfig").ui.hl_add
+local user_new_highlights = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui/init.lua').ui.hl_add
 
 if user_new_highlights then
   local hexify_ColorStrs = require('base46').turn_str_to_color

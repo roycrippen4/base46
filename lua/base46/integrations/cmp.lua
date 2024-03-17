@@ -45,8 +45,7 @@ local item_kinds = {
   CmpItemKindTabNine = { fg = colors.baby_pink },
 }
 
-local cmp_ui = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua').ui.cmp
--- local cmp_ui = require('nvconfig').ui.cmp
+local cmp_ui = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui/init.lua').ui.cmp
 
 -- custom highlights per style!
 local styles = {
