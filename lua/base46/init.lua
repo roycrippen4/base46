@@ -1,5 +1,4 @@
 local M = {}
-local g = vim.g
 local config = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua')
 
 M.get_theme_tb = function(type)
