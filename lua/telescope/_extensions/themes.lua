@@ -6,7 +6,7 @@ local conf = require('telescope.config').values
 local actions = require('telescope.actions')
 local action_set = require('telescope.actions.set')
 local action_state = require('telescope.actions.state')
-local config_path = vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua'
+local config_path = vim.fn.stdpath('config') .. '/lua/plugins/configs/ui/init.lua'
 
 local function list_themes()
   local default_themes = vim.fn.readdir(vim.fn.stdpath('data') .. '/lazy/base46/lua/base46/themes')
