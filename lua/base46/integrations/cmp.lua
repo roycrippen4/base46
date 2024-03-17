@@ -1,5 +1,5 @@
-local base16 = require("base46").get_theme_tb "base_16"
-local colors = require("base46").get_theme_tb "base_30"
+local base16 = require('base46').get_theme_tb('base_16')
+local colors = require('base46').get_theme_tb('base_30')
 
 local highlights = {
   CmpItemAbbr = { fg = colors.white },
@@ -7,7 +7,7 @@ local highlights = {
   CmpDoc = { bg = colors.darker_black },
   CmpDocBorder = { fg = colors.darker_black, bg = colors.darker_black },
   CmpPmenu = { bg = colors.black },
-  CmpSel = { link = "PmenuSel", bold = true },
+  CmpSel = { link = 'PmenuSel', bold = true },
 }
 
 local item_kinds = {
@@ -45,7 +45,8 @@ local item_kinds = {
   CmpItemKindTabNine = { fg = colors.baby_pink },
 }
 
-local cmp_ui = require("nvconfig").ui.cmp
+local cmp_ui = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua').ui.cmp
+-- local cmp_ui = require('nvconfig').ui.cmp
 
 -- custom highlights per style!
 local styles = {
@@ -94,27 +95,27 @@ local styles = {
   },
 }
 
-local generate_color = require("base46.colors").change_hex_lightness
+local generate_color = require('base46.colors').change_hex_lightness
 
 -- override item_kind highlights for atom style
-if cmp_ui.style == "atom" then
+if cmp_ui.style == 'atom' then
   for key, value in pairs(item_kinds) do
     item_kinds[key] = vim.tbl_deep_extend(
-      "force",
+      'force',
       value,
-      { bg = vim.o.bg == "dark" and generate_color(colors.black2, 6) or generate_color(colors.black2, -6) }
+      { bg = vim.o.bg == 'dark' and generate_color(colors.black2, 6) or generate_color(colors.black2, -6) }
     )
   end
 end
 
 -- override item_kind highlights for atom_colored style
-if cmp_ui.style == "atom_colored" then
+if cmp_ui.style == 'atom_colored' then
   for key, value in pairs(item_kinds) do
     item_kinds[key] = { fg = colors.black, bg = generate_color(value.fg, -3), bold = true }
   end
 end
 
-highlights = vim.tbl_deep_extend("force", highlights, styles[cmp_ui.style] or {})
-highlights = vim.tbl_deep_extend("force", highlights, item_kinds)
+highlights = vim.tbl_deep_extend('force', highlights, styles[cmp_ui.style] or {})
+highlights = vim.tbl_deep_extend('force', highlights, item_kinds)
 
 return highlights

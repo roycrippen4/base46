@@ -1,7 +1,7 @@
-local colors = require("base46").get_theme_tb "base_30"
-local theme = require("base46").get_theme_tb "base_16"
+local colors = require('base46').get_theme_tb('base_30')
+local theme = require('base46').get_theme_tb('base_16')
 
-local generate_color = require("base46.colors").change_hex_lightness
+local generate_color = require('base46.colors').change_hex_lightness
 
 local defaults = {
   MatchWord = {
@@ -14,7 +14,7 @@ local defaults = {
   PmenuSel = { bg = colors.pmenu_bg, fg = colors.black },
   PmenuThumb = { bg = colors.grey },
 
-  MatchParen = { link = "MatchWord" },
+  MatchParen = { link = 'MatchWord' },
 
   Comment = { fg = colors.grey_fg },
 
@@ -104,7 +104,7 @@ local defaults = {
   Substitute = {
     fg = theme.base01,
     bg = theme.base0A,
-    sp = "none",
+    sp = 'none',
   },
 
   SpecialKey = {
@@ -138,11 +138,11 @@ local defaults = {
 
   Title = {
     fg = theme.base0D,
-    sp = "none",
+    sp = 'none',
   },
 
   Conceal = {
-    bg = "NONE",
+    bg = 'NONE',
   },
 
   Cursor = {
@@ -156,7 +156,7 @@ local defaults = {
 
   SignColumn = {
     fg = theme.base03,
-    sp = "NONE",
+    sp = 'NONE',
   },
 
   ColorColumn = {
@@ -165,7 +165,7 @@ local defaults = {
 
   CursorColumn = {
     bg = theme.base01,
-    sp = "none",
+    sp = 'none',
   },
 
   CursorLine = {
@@ -174,7 +174,7 @@ local defaults = {
 
   QuickFixLine = {
     bg = theme.base01,
-    sp = "none",
+    sp = 'none',
   },
 
   -- spell
@@ -211,7 +211,7 @@ local defaults = {
 
   LazyButton = {
     bg = colors.one_bg,
-    fg = generate_color(colors.light_grey, vim.o.bg == "dark" and 10 or -20),
+    fg = generate_color(colors.light_grey, vim.o.bg == 'dark' and 10 or -20),
   },
 
   LazyH2 = {
@@ -242,12 +242,13 @@ local defaults = {
 }
 
 -- merge statusilne & hl_add tables!
-local merge_tb = require("base46").merge_tb
+local merge_tb = require('base46').merge_tb
 
-local user_new_highlights = require("nvconfig").ui.hl_add
+local user_new_highlights = dofile(vim.fn.stdpath('config') .. '/lua/plugins/configs/ui.lua').ui.hl_add
+-- local user_new_highlights = require("nvconfig").ui.hl_add
 
 if user_new_highlights then
-  local hexify_ColorStrs = require("base46").turn_str_to_color
+  local hexify_ColorStrs = require('base46').turn_str_to_color
   defaults = merge_tb(defaults, hexify_ColorStrs(user_new_highlights))
 end
 
